@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wall Street Coin - Official Application</title>
+    <title>Bonus Bot Documentation</title>
     <style>
         * {
             margin: 0;
@@ -12,330 +12,621 @@
         }
 
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            background: white;
-            color: black;
-            min-height: 100vh;
-            padding: 40px 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background: #ffffff;
+            color: #000000;
+            line-height: 1.6;
+        }
+
+        .header {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 30px 40px;
+            background: #ffffff;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-small {
+            font-size: 24px;
+            font-weight: 200;
+            letter-spacing: 4px;
+            color: #000000;
+            text-decoration: none;
+        }
+
+        .nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: #666666;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #22c55e;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 80px 40px;
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 60px;
-            border-bottom: 1px solid black;
-            padding-bottom: 30px;
+        .sidebar {
+            position: fixed;
+            left: 40px;
+            top: 120px;
+            width: 200px;
+            padding-right: 30px;
+            border-right: 1px solid #e0e0e0;
+        }
+
+        .sidebar-link {
+            display: block;
+            color: #999999;
+            text-decoration: none;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .sidebar-link:hover,
+        .sidebar-link.active {
+            color: #22c55e;
+        }
+
+        .content {
+            margin-left: 270px;
+            max-width: 800px;
         }
 
         h1 {
-            font-size: 2.5em;
-            color: black;
-            margin-bottom: 10px;
-            font-weight: 300;
+            font-size: 48px;
+            font-weight: 200;
             letter-spacing: 2px;
+            margin-bottom: 20px;
         }
 
-        .subtitle {
-            font-size: 1em;
-            color: black;
+        h2 {
+            font-size: 32px;
             font-weight: 300;
             letter-spacing: 1px;
+            margin-top: 80px;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        h3 {
+            font-size: 20px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #333333;
+            font-size: 16px;
+            font-weight: 300;
+            margin-bottom: 20px;
+            line-height: 1.8;
         }
 
         .intro {
-            padding: 0;
-            margin-bottom: 80px;
-            text-align: center;
-        }
-
-        .intro p {
-            font-size: 1em;
+            font-size: 18px;
+            color: #666666;
+            margin-bottom: 60px;
             line-height: 1.8;
-            color: black;
-            font-weight: 300;
-            max-width: 700px;
-            margin: 0 auto;
         }
 
-        .proof-chain {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0;
+        code {
+            background: #f5f5f5;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            color: #000000;
         }
 
-        .proof-item {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        pre {
+            background: #f8f8f8;
+            border: 1px solid #e0e0e0;
+            padding: 30px;
+            margin: 30px 0;
+            overflow-x: auto;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
         }
 
-        .image-container {
-            width: 100%;
-            max-width: 700px;
-            height: 500px;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1em;
-            color: black;
-            text-align: center;
-            padding: 20px;
+        pre code {
+            background: none;
+            padding: 0;
+            border-radius: 0;
         }
 
-        .image-container img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
         }
 
-        .image-text {
-            font-weight: 300;
+        .feature-card {
+            padding: 30px;
+            border: 1px solid #e0e0e0;
+            transition: border-color 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: #22c55e;
+        }
+
+        .feature-title {
+            font-size: 16px;
+            font-weight: 400;
             letter-spacing: 1px;
+            margin-bottom: 15px;
         }
 
-        .arrow {
-            width: 0;
-            height: 0;
-            border-left: 20px solid transparent;
-            border-right: 20px solid transparent;
-            border-top: 30px solid black;
+        .feature-desc {
+            font-size: 14px;
+            color: #666666;
+            line-height: 1.6;
+        }
+
+        .note {
+            background: #fafafa;
+            border-left: 2px solid #22c55e;
+            padding: 20px 30px;
             margin: 30px 0;
         }
 
-        .step-label {
-            background: black;
+        .note-title {
+            font-weight: 400;
+            margin-bottom: 10px;
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .note-content {
+            font-size: 14px;
+            color: #666666;
+        }
+
+        .highlight {
+            background: #22c55e;
             color: white;
-            padding: 6px 18px;
-            font-size: 0.75em;
-            margin-bottom: 20px;
+            padding: 30px;
+            margin: 40px 0;
+            border: none;
+        }
+
+        .highlight .note-title {
+            color: white;
+        }
+
+        .highlight .note-content {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .highlight p {
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .highlight code {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        ul, ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            color: #333333;
+            font-size: 16px;
             font-weight: 300;
-            letter-spacing: 2px;
         }
 
-        footer {
-            text-align: center;
-            margin-top: 80px;
-            padding-top: 30px;
-            border-top: 1px solid black;
-            color: black;
-            font-size: 0.85em;
-            font-weight: 300;
+        .step {
+            padding: 25px;
+            margin: 20px 0;
+            background: #fafafa;
+            border-left: 2px solid #22c55e;
         }
 
-        footer p {
-            margin-bottom: 5px;
-        }
-
-        .x-button {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background: black;
+        .step-number {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            background: #22c55e;
+            color: white;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: transform 0.3s ease;
-            z-index: 1000;
+            text-align: center;
+            line-height: 28px;
+            font-weight: 600;
+            margin-right: 12px;
+            font-size: 14px;
         }
 
-        .x-button:hover {
-            transform: scale(1.1);
+        @media (max-width: 1024px) {
+            .sidebar {
+                display: none;
+            }
+
+            .content {
+                margin-left: 0;
+            }
         }
 
-        .x-button svg {
-            width: 24px;
-            height: 24px;
-            fill: white;
-        }
+        @media (max-width: 768px) {
+            .header {
+                padding: 20px;
+            }
 
-        .image-container img {
-            cursor: pointer;
-            transition: opacity 0.3s ease;
-        }
+            .container {
+                padding: 40px 20px;
+            }
 
-        .image-container img:hover {
-            opacity: 0.8;
-        }
+            h1 {
+                font-size: 32px;
+            }
 
-        /* Lightbox styles */
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            cursor: zoom-out;
-        }
+            h2 {
+                font-size: 24px;
+            }
 
-        .lightbox.active {
-            display: flex;
-        }
+            .nav {
+                display: none;
+            }
 
-        .lightbox img {
-            max-width: 95%;
-            max-height: 95%;
-            object-fit: contain;
-            cursor: zoom-out;
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: white;
-            font-size: 40px;
-            font-weight: 300;
-            cursor: pointer;
-            z-index: 2001;
-            transition: transform 0.3s ease;
-        }
-
-        .lightbox-close:hover {
-            transform: scale(1.2);
+            pre {
+                padding: 20px;
+                font-size: 12px;
+            }
         }
     </style>
 </head>
 <body>
-    <a href="https://x.com/wstcoins" target="_blank" class="x-button" aria-label="Follow us on X">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-        </svg>
-    </a>
-    <div class="container">
-        <header>
-            <h1>WALL STREET COIN</h1>
-            <p class="subtitle">Digital Innovation Meets Financial Excellence</p>
-        </header>
-
-        <div class="intro">
-            <p>
-                As Solana has started being seen by Wall Street we decided to try and create a memecoin backed by Wall Street investors.
-                <br><br>
-                So we contacted every major firm until we could and below is emails showing we were successful.
-                <br><br>
-                <em>(Click any image below to view it in fullscreen)</em>
-            </p>
+    <div class="header">
+        <div class="header-content">
+            <a href="#" class="logo-small">BONUS BOT</a>
+            <nav class="nav">
+                <a href="#introduction" class="nav-link">ABOUT</a>
+                <a href="#documentation" class="nav-link">DOCUMENTATION</a>
+            </nav>
         </div>
-
-        <div class="proof-chain">
-            <!-- Proof Item 1 -->
-            <div class="proof-item">
-                <span class="step-label">STEP 1: APPLICATION SUBMISSION</span>
-                <div class="image-container">
-                    <img src="step1-application.jpg" alt="Official Application Document - Wall Street Coin Digital Company Registration">
-                </div>
-            </div>
-            <div class="arrow"></div>
-
-            <!-- Proof Item 2 -->
-            <div class="proof-item">
-                <span class="step-label">STEP 2: IDENTITY VERIFICATION</span>
-                <div class="image-container">
-                    <img src="step2-application.jpg" alt="Corporate Identity Verification - Digital Certificates & Authentication">
-                </div>
-            </div>
-            <div class="arrow"></div>
-
-            <!-- Proof Item 3 -->
-            <div class="proof-item">
-                <span class="step-label">STEP 3: FINANCIAL COMPLIANCE REVIEW</span>
-                <div class="image-container">
-                    <img src="step3-application.jpg" alt="Compliance Documentation - SEC & Financial Regulatory Standards Met">
-                </div>
-            </div>
-            <div class="arrow"></div>
-
-            <!-- Proof Item 4 -->
-            <div class="proof-item">
-                <span class="step-label">STEP 4: TECHNICAL INFRASTRUCTURE AUDIT</span>
-                <div class="image-container">
-                    <img src="step4-application.jpg" alt="Blockchain Technology Validation - Security & Infrastructure Assessment Passed">
-                </div>
-            </div>
-            <div class="arrow"></div>
-
-            <!-- Proof Item 5 -->
-            <div class="proof-item">
-                <span class="step-label">STEP 5: OFFICIAL ACKNOWLEDGMENT</span>
-                <div class="image-container">
-                    <img src="step5-application.jpg" alt="Wall Street Recognition Certificate - Wall Street Coin Approved Digital Company">
-                </div>
-            </div>
-        </div>
-
-        <footer>
-            <p>&copy; 2025 Wall Street Coin. All rights reserved.</p>
-            <p>Revolutionizing finance through blockchain innovation.</p>
-        </footer>
     </div>
 
-    <!-- Lightbox -->
-    <div class="lightbox" id="lightbox">
-        <span class="lightbox-close" id="lightbox-close">&times;</span>
-        <img src="" alt="" id="lightbox-img">
+    <div class="container">
+        <aside class="sidebar">
+            <a href="#introduction" class="sidebar-link active">Introduction</a>
+            <a href="#how-it-works" class="sidebar-link">How It Works</a>
+            <a href="#features" class="sidebar-link">Features</a>
+            <a href="#security" class="sidebar-link">Security</a>
+            <a href="#documentation" class="sidebar-link">Documentation</a>
+            <a href="#faq" class="sidebar-link">FAQ</a>
+        </aside>
+
+        <div class="content">
+            <section id="introduction">
+                <h2>Introduction</h2>
+                
+                <p>
+                    <strong>Bonus Bot</strong> is a fee distribution service that allows memecoin developers to easily spread collected fees to all token holders proportionally. Simply send your fees along with your contract address, and we'll handle the rest.
+                </p>
+                
+                <p>
+                    This service creates an additional incentive for holders and builds community loyalty by ensuring everyone benefits from the project's success. Bonus Bot automates the complex process of proportional distribution, making it simple for developers to reward their communities.
+                </p>
+
+                <p>
+                    All distributions are transparent, secure, and executed automatically based on current holder snapshots. Join hundreds of memecoin projects already using Bonus Bot to reward their communities.
+                </p>
+
+                <div class="highlight">
+                    <div class="note-title">🔒 Secure & Automated</div>
+                    <div class="note-content">
+                        Send fees from your dev wallet with your contract address, and we'll automatically distribute proportionally to all holders. Simple, secure, and transparent.
+                    </div>
+                </div>
+
+                <div class="note">
+                    <div class="note-title">Why Bonus Bot?</div>
+                    <div class="note-content">
+                        Bonus Bot eliminates the complexity of manual fee distribution. We handle snapshots, calculations, and transactions automatically, allowing you to focus on building your project while keeping your community engaged and rewarded.
+                    </div>
+                </div>
+            </section>
+
+            <section id="how-it-works">
+                <h2>How It Works</h2>
+                
+                <p>
+                    The distribution process is simple and automated. You collect fees from your memecoin project, send them to our distribution wallet along with your contract address, and we handle everything else.
+                </p>
+
+                <h3>The Process</h3>
+                <ul>
+                    <li><strong>Fee Collection:</strong> Accumulate trading fees or revenue in your dev wallet</li>
+                    <li><strong>Transaction Submission:</strong> Send fees to our wallet with your CA in the memo</li>
+                    <li><strong>Wallet Verification:</strong> We verify the transaction comes from the registered dev wallet</li>
+                    <li><strong>Holder Snapshot:</strong> We capture current holder balances at the time of receipt</li>
+                    <li><strong>Proportional Calculation:</strong> Distribution amounts are calculated based on holding percentages</li>
+                    <li><strong>Automatic Distribution:</strong> All holders receive their proportional share automatically</li>
+                </ul>
+
+                <h3>Distribution Formula</h3>
+                <div class="note">
+                    <div class="note-content">
+                        <strong>Each holder receives:</strong><br>
+                        <code>(Holder's Token Balance / Total Token Supply) × Total Fees Sent</code><br><br>
+                        This ensures fair and proportional distribution based on each holder's stake in the token.
+                    </div>
+                </div>
+
+                <h3>Timeline</h3>
+                <ul>
+                    <li>Transaction received and verified: Instant</li>
+                    <li>Holder snapshot captured: 1-2 minutes</li>
+                    <li>Distribution calculations: 2-3 minutes</li>
+                    <li>Fee distribution to holders: 5-15 minutes total</li>
+                </ul>
+            </section>
+
+            <section id="features">
+                <h2>Features</h2>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-title">Proportional Distribution</div>
+                        <div class="feature-desc">
+                            All holders receive fees proportional to their token holdings, ensuring fairness.
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-title">Automated Processing</div>
+                        <div class="feature-desc">
+                            No manual work required—just send the transaction and we handle everything.
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-title">Multi-Chain Support</div>
+                        <div class="feature-desc">
+                            Support for ETH, BSC, Solana, Base, and more blockchains.
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-title">Secure Verification</div>
+                        <div class="feature-desc">
+                            Only verified dev wallets can trigger distributions, preventing unauthorized access.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="security">
+                <h2>Security</h2>
+                
+                <p>
+                    Security is our top priority. Bonus Bot implements multiple layers of protection to ensure only authorized distributions can occur.
+                </p>
+
+                <h3>Dev Wallet Verification</h3>
+                <div class="note">
+                    <div class="note-title">⚠️ Critical Requirement</div>
+                    <div class="note-content">
+                        <strong>All fee distributions MUST originate from the registered dev wallet.</strong> Transactions from any other wallet will be automatically rejected and returned (minus gas fees).
+                    </div>
+                </div>
+
+                <h3>Security Measures</h3>
+                <ul>
+                    <li><strong>Wallet Whitelisting:</strong> Only registered dev wallets can trigger distributions</li>
+                    <li><strong>Transaction Verification:</strong> Every transaction is verified against our database</li>
+                    <li><strong>Automatic Rejection:</strong> Unauthorized transactions are rejected immediately</li>
+                    <li><strong>Audit Trail:</strong> All distributions are logged and can be verified on-chain</li>
+                    <li><strong>No Smart Contract Risk:</strong> We don't require custody of your tokens</li>
+                </ul>
+
+                <h3>Why Dev Wallet Only?</h3>
+                <p>
+                    Restricting distributions to verified dev wallets ensures:
+                </p>
+                <ul>
+                    <li>Only authorized team members can trigger distributions</li>
+                    <li>Prevention of spam or malicious distribution attempts</li>
+                    <li>Accountability and transparency in fee distribution</li>
+                    <li>Protection against unauthorized access</li>
+                </ul>
+            </section>
+
+            <section id="documentation">
+                <h2>Documentation</h2>
+
+                <h3>Registration</h3>
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <strong>Contact Us to Register</strong>
+                    <p>Provide the following information:</p>
+                    <ul>
+                        <li>Your memecoin's contract address (CA)</li>
+                        <li>Your verified dev wallet address</li>
+                        <li>Project name and basic information</li>
+                        <li>Preferred blockchain network</li>
+                    </ul>
+                </div>
+
+                <h3>Making a Distribution</h3>
+                
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <strong>Prepare Your Transaction</strong>
+                    <ul>
+                        <li>Ensure you're using your registered dev wallet</li>
+                        <li>Determine the amount you want to distribute</li>
+                        <li>Have your memecoin's contract address ready</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <strong>Send the Transaction</strong>
+                    <ul>
+                        <li><strong>Recipient:</strong> <code>[DISTRIBUTION_WALLET_ADDRESS]</code></li>
+                        <li><strong>Memo/Note:</strong> Your contract address (CA)</li>
+                        <li><strong>Amount:</strong> Fees to distribute</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <strong>Confirmation</strong>
+                    <ul>
+                        <li>Wait 5-15 minutes for processing</li>
+                        <li>Receive confirmation with transaction details</li>
+                        <li>Verify distribution on blockchain explorer</li>
+                    </ul>
+                </div>
+
+                <h3>Supported Blockchains</h3>
+                <ul>
+                    <li>Ethereum (ETH)</li>
+                    <li>Binance Smart Chain (BSC)</li>
+                    <li>Solana (SOL)</li>
+                    <li>Base</li>
+                    <li>More chains coming soon!</li>
+                </ul>
+
+                <h3>Fees and Timing</h3>
+                <ul>
+                    <li><strong>Service Fee:</strong> 2-5% of distribution to cover gas and operations</li>
+                    <li><strong>Processing Time:</strong> 5-15 minutes depending on network</li>
+                    <li><strong>Minimum Amount:</strong> Varies by blockchain for gas efficiency</li>
+                </ul>
+
+                <h3>Best Practices</h3>
+                <ul>
+                    <li>Distribute fees regularly to maintain community engagement</li>
+                    <li>Announce distributions beforehand to build anticipation</li>
+                    <li>Keep records of all distributions for transparency</li>
+                    <li>Only send from your verified dev wallet</li>
+                    <li>Double-check the contract address before sending</li>
+                    <li>Consider gas fees when planning distribution frequency</li>
+                </ul>
+
+                <h3>Contact & Support</h3>
+                <p>For registration, support, or questions:</p>
+                <ul>
+                    <li>Email: <code>support@bonusbot.io</code></li>
+                    <li>Telegram: <code>@BonusBotSupport</code></li>
+                    <li>Discord: <code>discord.gg/bonusbot</code></li>
+                </ul>
+            </section>
+
+            <section id="faq">
+                <h2>FAQ</h2>
+                
+                <h3>General Questions</h3>
+                
+                <p><strong>Q: What happens if I send from the wrong wallet?</strong></p>
+                <p>A: The transaction will be rejected and funds returned (minus gas fees) to the sender address.</p>
+
+                <p><strong>Q: Can I distribute partial fees?</strong></p>
+                <p>A: Yes, you can send any amount you wish to distribute. You're not required to send all accumulated fees at once.</p>
+
+                <p><strong>Q: How often should I distribute fees?</strong></p>
+                <p>A: This depends on your project's fee accumulation rate and community expectations. Weekly or monthly distributions are common.</p>
+
+                <h3>Technical Questions</h3>
+
+                <p><strong>Q: Do holders need to do anything to receive distributions?</strong></p>
+                <p>A: No, distributions are automatic. Holders simply need to hold your token in their wallet.</p>
+
+                <p><strong>Q: Are there minimum holding requirements?</strong></p>
+                <p>A: All holders receive proportional distributions, but very small amounts may not be sent if they're below the blockchain's dust threshold.</p>
+
+                <p><strong>Q: How do you calculate proportional distribution?</strong></p>
+                <p>A: We use the formula: (Holder's Balance / Total Supply) × Total Fees Sent. This ensures fair distribution based on holding percentage.</p>
+
+                <p><strong>Q: Can I verify the distributions?</strong></p>
+                <p>A: Yes, all distributions are on-chain and can be verified using blockchain explorers.</p>
+            </section>
+
+            <div class="note" style="margin-top: 80px;">
+                <div class="note-title">About Bonus Bot</div>
+                <div class="note-content">
+                    Bonus Bot makes fee distribution simple, secure, and automated for memecoin projects. By rewarding holders proportionally, you build stronger communities and create lasting value. Join us in making crypto more rewarding for everyone.
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
-        // Get all images in image containers
-        const images = document.querySelectorAll('.image-container img');
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        const lightboxClose = document.getElementById('lightbox-close');
-
-        // Add click event to each image
-        images.forEach(img => {
-            img.addEventListener('click', function() {
-                lightbox.classList.add('active');
-                lightboxImg.src = this.src;
-                lightboxImg.alt = this.alt;
-                document.body.style.overflow = 'hidden';
+        // Smooth scrolling for sidebar links
+        document.querySelectorAll('.sidebar-link, .nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                        
+                        // Update active state
+                        document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+                        if (this.classList.contains('sidebar-link')) {
+                            this.classList.add('active');
+                        }
+                    }
+                }
             });
         });
 
-        // Close lightbox when clicking the close button
-        lightboxClose.addEventListener('click', function(e) {
-            e.stopPropagation();
-            closeLightbox();
-        });
+        // Update active link on scroll
+        const sections = document.querySelectorAll('section[id]');
+        const sidebarLinks = document.querySelectorAll('.sidebar-link');
 
-        // Close lightbox when clicking outside the image
-        lightbox.addEventListener('click', function() {
-            closeLightbox();
-        });
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
 
-        // Prevent closing when clicking on the image itself
-        lightboxImg.addEventListener('click', function(e) {
-            e.stopPropagation();
+            sidebarLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
         });
-
-        // Close lightbox with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-                closeLightbox();
-            }
-        });
-
-        function closeLightbox() {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
     </script>
 </body>
 </html>
-
