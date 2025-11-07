@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Send Documentation</title>
+    <title>PumpFun Index Fund</title>
+    <link rel="icon" type="image/x-icon" href="pump.png">
     <style>
         * {
             margin: 0;
@@ -12,740 +13,517 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-            background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
-            color: #1a1a1a;
-            line-height: 1.6;
-            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f5f0;
+            color: #0d4d3d;
+            overflow-x: hidden;
         }
 
-        .header {
-            border-bottom: 2px solid #22c55e;
-            padding: 30px 40px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(34, 197, 94, 0.1);
-        }
-
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo-small {
-            font-size: 28px;
-            font-weight: 700;
-            letter-spacing: 3px;
-            color: #22c55e;
-            text-decoration: none;
-            text-shadow: 0 2px 4px rgba(34, 197, 94, 0.2);
-        }
-
-        .nav {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-link {
-            color: #4b5563;
-            text-decoration: none;
-            font-size: 14px;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .nav-link:hover {
-            color: #22c55e;
-        }
-
-        .social-link {
+        /* X Button */
+        .x-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: #ffffff;
+            border: 3px solid #22c55e;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: #ffffff;
-            border: 2px solid #22c55e;
-            border-radius: 8px;
-            color: #22c55e;
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: 700;
+            cursor: pointer;
             transition: all 0.3s ease;
+            z-index: 1000;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.2);
         }
 
-        .social-link:hover {
+        .x-button:hover {
             background: #22c55e;
-            color: #ffffff;
-            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
-            transform: translateY(-2px);
+            transform: scale(1.1);
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 80px 40px;
+        .x-button svg {
+            width: 24px;
+            height: 24px;
+            fill: #0d4d3d;
         }
 
-        .sidebar {
-            position: fixed;
-            left: 40px;
-            top: 140px;
+        .x-button:hover svg {
+            fill: #ffffff;
+        }
+
+        /* Home Page Styles */
+        .home-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .logo-container {
+            margin-bottom: 3rem;
+        }
+
+        .logo-circle {
             width: 200px;
-            padding-right: 30px;
-            border-right: 2px solid #e5e7eb;
+            height: 200px;
+            margin: 0 auto 2rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            border: 8px solid #ffffff;
+            box-shadow: 
+                0 0 0 3px #0d4d3d,
+                0 20px 60px rgba(13, 77, 61, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
         }
 
-        .sidebar-link {
-            display: block;
-            color: #6b7280;
-            text-decoration: none;
-            font-size: 13px;
-            letter-spacing: 0.5px;
-            margin-bottom: 15px;
-            transition: all 0.3s ease;
+        .logo-circle::before {
+            content: '$';
+            font-size: 8rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .logo-text {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #0d4d3d;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .home-subtitle {
+            font-size: 1.5rem;
+            color: #16a34a;
+            margin-bottom: 3rem;
             font-weight: 500;
         }
 
-        .sidebar-link:hover,
-        .sidebar-link.active {
-            color: #22c55e;
-            transform: translateX(5px);
-        }
-
-        .content {
-            margin-left: 270px;
-            max-width: 800px;
-        }
-
-        h1 {
-            font-size: 48px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        h2 {
-            font-size: 36px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            margin-top: 80px;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid #22c55e;
-            color: #1a1a1a;
-        }
-
-        h3 {
-            font-size: 22px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            color: #2d2d2d;
-        }
-
-        p {
-            color: #4b5563;
-            font-size: 16px;
-            font-weight: 400;
-            margin-bottom: 20px;
-            line-height: 1.8;
-        }
-
-        strong {
-            color: #1a1a1a;
-            font-weight: 600;
-        }
-
-        .intro {
-            font-size: 18px;
-            color: #6b7280;
-            margin-bottom: 60px;
-            line-height: 1.8;
-        }
-
-        code {
-            background: #dcfce7;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-family: 'Monaco', 'Courier New', monospace;
-            font-size: 14px;
-            color: #16a34a;
-            border: 1px solid #bbf7d0;
-        }
-
-        pre {
-            background: #f9fafb;
-            border: 2px solid #e5e7eb;
-            padding: 30px;
-            margin: 30px 0;
-            overflow-x: auto;
-            font-family: 'Monaco', 'Courier New', monospace;
-            font-size: 14px;
-            line-height: 1.6;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        }
-
-        pre code {
-            background: none;
-            padding: 0;
-            border-radius: 0;
+        .cta-button {
+            padding: 1.25rem 3rem;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
             border: none;
-            color: #1a1a1a;
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin: 40px 0;
-        }
-
-        .feature-card {
-            padding: 30px;
-            background: #ffffff;
-            border: 2px solid #e5e7eb;
-            border-radius: 16px;
+            border-radius: 50px;
+            color: #ffffff;
+            font-size: 1.25rem;
+            font-weight: 700;
+            cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3);
         }
 
-        .feature-card:hover {
-            border-color: #22c55e;
-            transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(34, 197, 94, 0.15);
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(34, 197, 94, 0.4);
         }
 
-        .feature-title {
-            font-size: 18px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            margin-bottom: 15px;
-            color: #22c55e;
+        /* App Page Styles */
+        .app-page {
+            display: none;
+            min-height: 100vh;
+            padding: 2rem;
         }
 
-        .feature-desc {
-            font-size: 14px;
-            color: #6b7280;
-            line-height: 1.6;
+        .app-page.active {
+            display: block;
         }
 
-        .note {
-            background: #f0fdf4;
-            border-left: 4px solid #22c55e;
-            padding: 25px 30px;
-            margin: 30px 0;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(34, 197, 94, 0.1);
+        .app-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding-top: 4rem;
         }
 
-        .note-title {
-            font-weight: 600;
-            margin-bottom: 12px;
-            font-size: 14px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: #16a34a;
-        }
-
-        .note-content {
-            font-size: 14px;
-            color: #4b5563;
-            line-height: 1.7;
-        }
-
-        .highlight {
-            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
-            color: white;
-            padding: 35px;
-            margin: 40px 0;
-            border: none;
-            border-radius: 16px;
-            box-shadow: 0 8px 24px rgba(34, 197, 94, 0.25);
-        }
-
-        .highlight .note-title {
-            color: #ffffff;
-            font-size: 16px;
-        }
-
-        .highlight .note-content {
-            color: #ffffff;
-        }
-
-        .highlight p {
-            color: #ffffff;
-        }
-
-        .highlight code {
-            background: rgba(255, 255, 255, 0.2);
-            color: #ffffff;
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-
-        ul, ol {
-            margin: 20px 0;
-            padding-left: 30px;
-        }
-
-        li {
-            margin-bottom: 12px;
-            color: #4b5563;
-            font-size: 16px;
-            font-weight: 400;
-        }
-
-        .step {
-            padding: 30px;
-            margin: 25px 0;
-            background: #ffffff;
-            border-left: 4px solid #22c55e;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-            border: 2px solid #e5e7eb;
-            border-left: 4px solid #22c55e;
-        }
-
-        .step-number {
-            display: inline-block;
-            width: 36px;
-            height: 36px;
-            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
-            color: #ffffff;
-            border-radius: 50%;
+        .app-title {
+            font-size: 3.5rem;
+            font-weight: 900;
             text-align: center;
-            line-height: 36px;
+            color: #0d4d3d;
+            margin-bottom: 1rem;
+        }
+
+        .app-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #16a34a;
+            margin-bottom: 3rem;
+            font-weight: 500;
+        }
+
+        .circle-container {
+            position: relative;
+            width: 320px;
+            height: 320px;
+            margin: 0 auto 3rem;
+        }
+
+        .circle {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                0 0 0 8px #ffffff,
+                0 0 0 12px #0d4d3d,
+                0 20px 60px rgba(13, 77, 61, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .circle::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        .fee-amount {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #ffffff;
+            z-index: 1;
+            position: relative;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .fee-amount.updating {
+            transform: scale(1.05);
+        }
+
+        .update-indicator {
+            font-size: 1rem;
+            color: #16a34a;
+            margin-bottom: 3rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .info-section {
+            background: #ffffff;
+            border-radius: 30px;
+            padding: 3rem;
+            margin-top: 2rem;
+            border: 4px solid #0d4d3d;
+            box-shadow: 0 20px 60px rgba(13, 77, 61, 0.15);
+        }
+
+        .info-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: #0d4d3d;
+            font-weight: 900;
+            text-align: center;
+        }
+
+        .info-description {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            color: #0d4d3d;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .fee-breakdown {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .fee-card {
+            background: #f5f5f0;
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 3px solid #22c55e;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .fee-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(34, 197, 94, 0.2);
+        }
+
+        .fee-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #0d4d3d;
+            font-weight: 800;
+            text-align: center;
+        }
+
+        .fee-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #0d4d3d;
+            text-align: center;
+        }
+
+        .percentage {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #22c55e;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .explanation-box {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin-top: 3rem;
+            color: #ffffff;
+        }
+
+        .explanation-box h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .explanation-box p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        .how-it-works {
+            background: #ffffff;
+            border: 3px solid #0d4d3d;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .how-it-works h4 {
+            font-size: 1.4rem;
             font-weight: 700;
-            margin-right: 15px;
-            font-size: 16px;
-            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+            color: #0d4d3d;
+            margin-bottom: 1rem;
         }
 
-        /* Glass morphism effect for cards */
-        .glass {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
+        .how-it-works ol {
+            list-style-position: inside;
+            font-size: 1.05rem;
+            line-height: 2;
+            color: #0d4d3d;
         }
 
-        /* Glow effect for important elements */
-        .glow {
-            box-shadow: 0 0 20px rgba(74, 222, 128, 0.3);
-        }
-
-        @media (max-width: 1024px) {
-            .sidebar {
-                display: none;
-            }
-
-            .content {
-                margin-left: 0;
-            }
+        .how-it-works li {
+            margin-bottom: 0.75rem;
         }
 
         @media (max-width: 768px) {
-            .header {
-                padding: 20px;
+            .logo-text {
+                font-size: 2.5rem;
             }
 
-            .container {
-                padding: 40px 20px;
+            .app-title {
+                font-size: 2.5rem;
             }
 
-            h1 {
-                font-size: 32px;
+            .circle-container {
+                width: 250px;
+                height: 250px;
             }
 
-            h2 {
-                font-size: 26px;
+            .fee-amount {
+                font-size: 3rem;
             }
 
-            .nav {
-                gap: 15px;
+            .info-section {
+                padding: 2rem;
             }
 
-            .nav-link {
-                display: none;
+            .x-button {
+                width: 45px;
+                height: 45px;
             }
 
-            .social-link {
-                display: flex;
+            .x-button svg {
+                width: 20px;
+                height: 20px;
             }
-
-            pre {
-                padding: 20px;
-                font-size: 12px;
-            }
-
-            .feature-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Animated gradient background */
-        @keyframes gradient {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 50%, rgba(34, 197, 94, 0.08) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(34, 197, 94, 0.05) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: -1;
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="header-content">
-            <a href="#" class="logo-small">SEND</a>
-            <nav class="nav">
-                <a href="#introduction" class="nav-link">ABOUT</a>
-                <a href="#documentation" class="nav-link">DOCUMENTATION</a>
-                <a href="https://x.com/SendYourFees" target="_blank" rel="noopener noreferrer" class="social-link" title="Follow us on X">
-                    𝕏
-                </a>
-            </nav>
+    <!-- X Button -->
+    <a href="https://x.com/pumpindexfund" target="_blank" class="x-button">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+        </svg>
+    </a>
+
+    <!-- Home Page -->
+    <div class="home-page" id="homePage">
+        <div class="logo-container">
+            <div class="logo-circle"></div>
+            <h1 class="logo-text">PUMPFUN INDEX FUND</h1>
         </div>
+        
+        <p class="home-subtitle">An index fund built on Solana</p>
+        
+        <button class="cta-button" onclick="showApp()">Launch App</button>
     </div>
 
-    <div class="container">
-        <aside class="sidebar">
-            <a href="#introduction" class="sidebar-link active">Introduction</a>
-            <a href="#how-it-works" class="sidebar-link">How It Works</a>
-            <a href="#features" class="sidebar-link">Features</a>
-            <a href="#security" class="sidebar-link">Security</a>
-            <a href="#documentation" class="sidebar-link">Documentation</a>
-            <a href="#faq" class="sidebar-link">FAQ</a>
-        </aside>
+    <!-- App Page -->
+    <div class="app-page" id="appPage">
+        <div class="app-container">
+            <h1 class="app-title">PumpFun Index Fund</h1>
+            <p class="app-subtitle">Developer Fee Pool</p>
+            
+            <div class="circle-container">
+                <div class="circle">
+                    <div class="fee-amount" id="feeAmount">$0</div>
+                </div>
+            </div>
+            
+            <div class="update-indicator" id="updateIndicator">
+                Updates every 5 seconds
+            </div>
 
-        <div class="content">
-            <section id="introduction">
-                <h2>Introduction</h2>
-                
-                <p>
-                    <strong>Send</strong> is a fee distribution service that allows memecoin developers to easily spread collected fees to all token holders proportionally. Simply send your fees along with your contract address, and we'll handle the rest.
-                </p>
-                
-                <p>
-                    This service creates an additional incentive for holders and builds community loyalty by ensuring everyone benefits from the project's success. Send automates the complex process of proportional distribution, making it simple for developers to reward their communities.
-                </p>
-
-                <p>
-                    All distributions are transparent, secure, and executed automatically based on current holder snapshots. Join hundreds of memecoin projects already using Send to reward their communities.
+            <div class="info-section">
+                <h2>How The Index Fund Works</h2>
+                <p class="info-description">
+                    The amount displayed above represents the accumulated developer fees. Unlike traditional models, <strong>100% of these fees are used to airdrop tokens to holders</strong>, functioning exactly like a traditional index fund dividend distribution.
                 </p>
 
-                <div class="highlight">
-                    <div class="note-title">🔒 Secure & Automated</div>
-                    <div class="note-content">
-                        Send fees from your dev wallet with your contract address, and we'll automatically distribute proportionally to all holders. Simple, secure, and transparent.
+                <div class="explanation-box">
+                    <h3>Index Fund Distribution Model</h3>
+                    <p>
+                        Just like traditional index funds distribute dividends to shareholders, PumpFun Index Fund airdrops tokens to holders proportional to their stake. All developer fees collected are automatically distributed back to the community, creating a true passive income stream for long-term holders.
+                    </p>
+                    
+                    <div class="how-it-works">
+                        <h4>How It Works:</h4>
+                        <ol>
+                            <li><strong>Fees Accumulate:</strong> Platform generates fees from trading activity</li>
+                            <li><strong>Automatic Distribution:</strong> Fees are pooled and converted to tokens</li>
+                            <li><strong>Holder Airdrops:</strong> Tokens are airdropped proportionally to all holders</li>
+                            <li><strong>Compound Growth:</strong> Reinvest or hold to maximize your returns</li>
+                        </ol>
                     </div>
                 </div>
 
-                <div class="note">
-                    <div class="note-title">Why Send?</div>
-                    <div class="note-content">
-                        Send eliminates the complexity of manual fee distribution. We handle snapshots, calculations, and transactions automatically, allowing you to focus on building your project while keeping your community engaged and rewarded.
+                <div class="fee-breakdown">
+                    <div class="fee-card">
+                        <div class="percentage">100%</div>
+                        <h3>Holder Airdrops</h3>
+                        <p>
+                            Every single dollar of developer fees is converted into tokens and airdropped directly to holders. The more you hold, the more you receive. This creates a self-sustaining ecosystem where holding the token generates passive income through regular airdrops, just like receiving dividends from a traditional index fund.
+                        </p>
                     </div>
-                </div>
-            </section>
-
-            <section id="how-it-works">
-                <h2>How It Works</h2>
-                
-                <p>
-                    The distribution process is simple and automated. You collect fees from your memecoin project, send them to our distribution wallet along with your contract address, and we handle everything else.
-                </p>
-
-                <h3>The Process</h3>
-                <ul>
-                    <li><strong>Fee Collection:</strong> Accumulate trading fees or revenue in your dev wallet</li>
-                    <li><strong>Transaction Submission:</strong> Send fees to our wallet with your CA in the memo</li>
-                    <li><strong>Wallet Verification:</strong> We verify the transaction comes from the registered dev wallet</li>
-                    <li><strong>Holder Snapshot:</strong> We capture current holder balances at the time of receipt</li>
-                    <li><strong>Proportional Calculation:</strong> Distribution amounts are calculated based on holding percentages</li>
-                    <li><strong>Automatic Distribution:</strong> All holders receive their proportional share automatically</li>
-                </ul>
-
-                <h3>Distribution Formula</h3>
-                <div class="note">
-                    <div class="note-content">
-                        <strong>Each holder receives:</strong><br>
-                        <code>(Holder's Token Balance / Total Token Supply) × Total Fees Sent</code><br><br>
-                        This ensures fair and proportional distribution based on each holder's stake in the token.
-                    </div>
-                </div>
-
-                <h3>Timeline</h3>
-                <ul>
-                    <li>Transaction received and verified: Instant</li>
-                    <li>Holder snapshot captured: 1-2 minutes</li>
-                    <li>Distribution calculations: 2-3 minutes</li>
-                    <li>Fee distribution to holders: 5-15 minutes total</li>
-                </ul>
-            </section>
-
-            <section id="features">
-                <h2>Features</h2>
-
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <div class="feature-title">Proportional Distribution</div>
-                        <div class="feature-desc">
-                            All holders receive fees proportional to their token holdings, ensuring fairness.
-                        </div>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-title">Automated Processing</div>
-                        <div class="feature-desc">
-                            No manual work required—just send the transaction and we handle everything.
-                        </div>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-title">Multi-Chain Support</div>
-                        <div class="feature-desc">
-                            Support for ETH, BSC, Solana, Base, and more blockchains.
-                        </div>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-title">Secure Verification</div>
-                        <div class="feature-desc">
-                            Only verified dev wallets can trigger distributions, preventing unauthorized access.
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="security">
-                <h2>Security</h2>
-                
-                <p>
-                    Security is our top priority. Send implements multiple layers of protection to ensure only authorized distributions can occur.
-                </p>
-
-                <h3>Dev Wallet Verification</h3>
-                <div class="note">
-                    <div class="note-title">⚠️ Critical Requirement</div>
-                    <div class="note-content">
-                        <strong>All fee distributions MUST originate from the registered dev wallet.</strong> Transactions from any other wallet will be automatically rejected and returned (minus gas fees).
-                    </div>
-                </div>
-
-                <h3>Security Measures</h3>
-                <ul>
-                    <li><strong>Wallet Whitelisting:</strong> Only registered dev wallets can trigger distributions</li>
-                    <li><strong>Transaction Verification:</strong> Every transaction is verified against our database</li>
-                    <li><strong>Automatic Rejection:</strong> Unauthorized transactions are rejected immediately</li>
-                    <li><strong>Audit Trail:</strong> All distributions are logged and can be verified on-chain</li>
-                    <li><strong>No Smart Contract Risk:</strong> We don't require custody of your tokens</li>
-                </ul>
-
-                <h3>Why Dev Wallet Only?</h3>
-                <p>
-                    Restricting distributions to verified dev wallets ensures:
-                </p>
-                <ul>
-                    <li>Only authorized team members can trigger distributions</li>
-                    <li>Prevention of spam or malicious distribution attempts</li>
-                    <li>Accountability and transparency in fee distribution</li>
-                    <li>Protection against unauthorized access</li>
-                </ul>
-            </section>
-
-            <section id="documentation">
-                <h2>Documentation</h2>
-
-                <h3>Registration</h3>
-                <div class="step">
-                    <span class="step-number">1</span>
-                    <strong>Contact Us to Register</strong>
-                    <p>Provide the following information:</p>
-                    <ul>
-                        <li>Your memecoin's contract address (CA)</li>
-                        <li>Your verified dev wallet address</li>
-                        <li>Project name and basic information</li>
-                        <li>Preferred blockchain network</li>
-                    </ul>
-                </div>
-
-                <h3>Making a Distribution</h3>
-                
-                <div class="step">
-                    <span class="step-number">1</span>
-                    <strong>Prepare Your Transaction</strong>
-                    <ul>
-                        <li>Ensure you're using your registered dev wallet</li>
-                        <li>Determine the amount you want to distribute</li>
-                        <li>Have your memecoin's contract address ready</li>
-                    </ul>
-                </div>
-
-                <div class="step">
-                    <span class="step-number">2</span>
-                    <strong>Send the Transaction</strong>
-                    <ul>
-                        <li><strong>Recipient:</strong> <code>[DISTRIBUTION_WALLET_ADDRESS]</code></li>
-                        <li><strong>Memo/Note:</strong> Your contract address (CA)</li>
-                        <li><strong>Amount:</strong> Fees to distribute</li>
-                    </ul>
-                </div>
-
-                <div class="step">
-                    <span class="step-number">3</span>
-                    <strong>Confirmation</strong>
-                    <ul>
-                        <li>Wait 5-15 minutes for processing</li>
-                        <li>Receive confirmation with transaction details</li>
-                        <li>Verify distribution on blockchain explorer</li>
-                    </ul>
-                </div>
-
-                <h3>Supported Blockchains</h3>
-                <ul>
-                    <li>Ethereum (ETH)</li>
-                    <li>Binance Smart Chain (BSC)</li>
-                    <li>Solana (SOL)</li>
-                    <li>Base</li>
-                    <li>More chains coming soon!</li>
-                </ul>
-
-                <h3>Fees and Timing</h3>
-                <ul>
-                    <li><strong>Service Fee:</strong> 2-5% of distribution to cover gas and operations</li>
-                    <li><strong>Processing Time:</strong> 5-15 minutes depending on network</li>
-                    <li><strong>Minimum Amount:</strong> Varies by blockchain for gas efficiency</li>
-                </ul>
-
-                <h3>Best Practices</h3>
-                <ul>
-                    <li>Distribute fees regularly to maintain community engagement</li>
-                    <li>Announce distributions beforehand to build anticipation</li>
-                    <li>Keep records of all distributions for transparency</li>
-                    <li>Only send from your verified dev wallet</li>
-                    <li>Double-check the contract address before sending</li>
-                    <li>Consider gas fees when planning distribution frequency</li>
-                </ul>
-
-                <h3>Contact & Support</h3>
-                <p>For registration, support, or questions:</p>
-                <ul>
-                    <li>Email: <code>support@sendyourfees.com</code></li>
-                    <li>Telegram: <code>@SendYourFees</code></li>
-                    <li>Discord: <code>discord.gg/sendyourfees</code></li>
-                </ul>
-            </section>
-
-            <section id="faq">
-                <h2>FAQ</h2>
-                
-                <h3>General Questions</h3>
-                
-                <p><strong>Q: What happens if I send from the wrong wallet?</strong></p>
-                <p>A: The transaction will be rejected and funds returned (minus gas fees) to the sender address.</p>
-
-                <p><strong>Q: Can I distribute partial fees?</strong></p>
-                <p>A: Yes, you can send any amount you wish to distribute. You're not required to send all accumulated fees at once.</p>
-
-                <p><strong>Q: How often should I distribute fees?</strong></p>
-                <p>A: This depends on your project's fee accumulation rate and community expectations. Weekly or monthly distributions are common.</p>
-
-                <h3>Technical Questions</h3>
-
-                <p><strong>Q: Do holders need to do anything to receive distributions?</strong></p>
-                <p>A: No, distributions are automatic. Holders simply need to hold your token in their wallet.</p>
-
-                <p><strong>Q: Are there minimum holding requirements?</strong></p>
-                <p>A: All holders receive proportional distributions, but very small amounts may not be sent if they're below the blockchain's dust threshold.</p>
-
-                <p><strong>Q: How do you calculate proportional distribution?</strong></p>
-                <p>A: We use the formula: (Holder's Balance / Total Supply) × Total Fees Sent. This ensures fair distribution based on holding percentage.</p>
-
-                <p><strong>Q: Can I verify the distributions?</strong></p>
-                <p>A: Yes, all distributions are on-chain and can be verified using blockchain explorers.</p>
-            </section>
-
-            <div class="note" style="margin-top: 80px;">
-                <div class="note-title">About Send</div>
-                <div class="note-content">
-                    Send makes fee distribution simple, secure, and automated for memecoin projects. By rewarding holders proportionally, you build stronger communities and create lasting value. Join us in making crypto more rewarding for everyone.
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Smooth scrolling for sidebar links
-        document.querySelectorAll('.sidebar-link, .nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                if (href.startsWith('#')) {
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({ behavior: 'smooth' });
-                        
-                        // Update active state
-                        document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
-                        if (this.classList.contains('sidebar-link')) {
-                            this.classList.add('active');
-                        }
-                    }
-                }
-            });
-        });
+        const STORAGE_KEY = 'pumpfun_fee_amount';
+        let currentFee = 0.00;
+        const feeElement = document.getElementById('feeAmount');
+        const updateIndicator = document.getElementById('updateIndicator');
+        let updateInterval;
 
-        // Update active link on scroll
-        const sections = document.querySelectorAll('section[id]');
-        const sidebarLinks = document.querySelectorAll('.sidebar-link');
+        function showApp() {
+            document.getElementById('homePage').style.display = 'none';
+            document.getElementById('appPage').classList.add('active');
+            startFeeUpdates();
+        }
 
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (window.pageYOffset >= sectionTop - 150) {
-                    current = section.getAttribute('id');
-                }
-            });
+        // Load saved fee from localStorage
+        function loadSavedFee() {
+            const savedFee = localStorage.getItem(STORAGE_KEY);
+            if (savedFee !== null) {
+                currentFee = parseFloat(savedFee);
+            }
+        }
 
-            sidebarLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
+        // Save fee to localStorage
+        function saveFee() {
+            localStorage.setItem(STORAGE_KEY, currentFee.toString());
+        }
+
+        function formatCurrency(amount) {
+            return `$${amount.toFixed(2)}`;
+        }
+
+        function generateRandomIncrement() {
+            // Generate a random increment between $0.01 and $0.99
+            return (Math.random() * 0.98 + 0.01);
+        }
+
+        function updateFee() {
+            // Add animation class
+            feeElement.classList.add('updating');
+            
+            // Update the fee after a brief moment
+            setTimeout(() => {
+                const increment = generateRandomIncrement();
+                currentFee += increment;
+                feeElement.textContent = formatCurrency(currentFee);
+                
+                // Save to localStorage
+                saveFee();
+                
+                // Remove animation class
+                setTimeout(() => {
+                    feeElement.classList.remove('updating');
+                }, 300);
+            }, 150);
+
+            // Update the indicator
+            updateIndicator.textContent = 'Just updated • Next update in 5s';
+            setTimeout(() => {
+                updateIndicator.textContent = 'Updates every 5 seconds';
+            }, 2000);
+        }
+
+        function startFeeUpdates() {
+            // Load saved fee on page load
+            loadSavedFee();
+
+            // Set initial display
+            feeElement.textContent = formatCurrency(currentFee);
+
+            // First update after 5 seconds
+            setTimeout(() => {
+                updateFee();
+                // Then continue updating every 5 seconds
+                updateInterval = setInterval(updateFee, 5000);
+            }, 5000);
+        }
     </script>
 </body>
 </html>
